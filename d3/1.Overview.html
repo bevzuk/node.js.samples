@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../node_modules/d3/d3.min.js" charset="utf-8" ></script>
+</head>
+<body>
+    <h3>SVG bar</h3>
+    <svg>
+        <rect height="200" width="50" style="fill: blue" ></rect>
+    </svg>
+
+    <h3>D3 bar</h3>
+    <script>
+        d3.select("body")
+                .append("svg")
+                .append("rect")
+                .attr("width", 150)
+                .attr("height", 200)
+                .style("fill", "green");
+    </script>
+
+    <h3>Circle</h3>
+    <svg width="50" height="50">
+        <circle cx="25" cy="25" r="25" style="fill: yellow" ></circle>
+    </svg>
+    <script>
+        d3.select("body")
+                .append("svg")
+                .attr("width", 50)
+                .attr("height", 50)
+                .append("circle")
+                .attr("cx", 25)
+                .attr("cy", 25)
+                .attr("r", 25)
+                .style("fill", "purple");
+    </script>
+
+    <h3>Text</h3>
+    <svg width="250" height="50">
+        <text x="0" y="25">Easy peasy</text>
+    </svg>
+    <script>
+        d3.select("body")
+                .append("svg")
+                .attr("width", 250)
+                .attr("height", 50)
+                .append("text")
+                .attr("x", 0)
+                .attr("y", 25)
+                .text("Easy peasy")
+                .style("fill", "blue");
+    </script>
+
+    <h3>Draw data</h3>
+    <script>
+        var w = 200;
+        var h = 100;
+        var padding = 2;
+        var data = [3, 5, 10, 7, 15, 6, 20];
+        var svg = d3.select("body")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+        svg.selectAll("rect")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("x", function(d, i) {
+                    return i * (w / data.length);
+                })
+                .attr("y", function(d) {
+                    return h - (d * 4);
+                })
+                .attr("width", w / data.length - padding)
+                .attr("height", function(d) {
+                    return d * 4;
+                });
+    </script>
+</body>
+</html>
+
